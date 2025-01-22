@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 import image from '../assets/darsh_image.jpeg';
 
 const Profile = () => {
@@ -78,20 +78,66 @@ const Profile = () => {
       </div>
 
       {/* Floating Shapes */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-        {/* Circle */}
-        <div className="shape absolute top-20 left-20 w-32 h-32 border-4 border-[#FF2D55] rounded-full opacity-20 animate-float" />
-        {/* Square */}
-       
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none animate-float">
+        {/* Circles */}
+        {Array.from({ length: 20 }).map((_, index) => (
+          <div
+            key={index}
+            className="absolute top-[calc(10px + 5%)] left-[calc(10px + 5%)] w-16 h-16 border-4 border-[#FF2D55] rounded-full opacity-20 animate-float"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+            }}
+          />
+        ))}
+
+        {/* Squares */}
+        {Array.from({ length: 20 }).map((_, index) => (
+          <div
+            key={index}
+            className="absolute top-[calc(10px + 5%)] left-[calc(10px + 5%)] w-16 h-16 border-4 border-[#FF9500] opacity-20 animate-float "
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+            }}
+          />
+        ))}
+
+        {/* Triangles */}
+        {Array.from({ length: 20 }).map((_, index) => (
+          <div
+            key={index}
+            className="absolute w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-b-[40px] border-b-[#34A853] opacity-20 animate-float "
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+            }}
+          />
+        ))}
       </div>
+
+      <style>
+        {`
+          @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(50px, -50px); }
+            75% { transform: translate(50px, -25px); }
+            100% { transform: translate(0, 0); }
+          }
+
+          .animate-float {
+            animation: float 10s infinite ease-in-out;
+          }
+        `}
+      </style>
 
       {/* Main Content */}
       <div className="relative z-10 text-center mt-16">
         {/* Profile Image */}
         <div className="w-48 h-48 rounded-full border-4 border-[#FF2D55] mb-8 overflow-hidden hover:scale-110 transition-transform duration-300 mx-auto">
           <img 
-             src={image} 
-             alt="Profile"
+            src={image} 
+            alt="Profile"
             className="w-full h-full object-cover"
           />
         </div>
